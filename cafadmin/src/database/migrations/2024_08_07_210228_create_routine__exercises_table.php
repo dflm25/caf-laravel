@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('routine__exercises', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('routine_id')->constrained()->onDelete('cascade');
+            $table->foreignId('exercise_id')->constrained()->onDelete('cascade');
+            $table->integer('repetitions');
+            $table->integer('times');
+            $table->integer('order');
             $table->timestamps();
         });
     }

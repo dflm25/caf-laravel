@@ -24,18 +24,22 @@ class ExerciseResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('body_part_id')
+                    ->relationship('body_part', 'name') // Assuming the relationship name is 
+                    ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('video')
+                    ->columnSpanFull(),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('picture')
+                Forms\Components\FileUpload::make('picture')
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('gif')
+                Forms\Components\FileUpload::make('gif')
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('video')
-                    ->columnSpanFull(),
-                Forms\Components\Select::make('difficulty')->options(ExerciseDifficulty::cases()) // Opciones desde el enum
+                
+                Forms\Components\Select::make('difficulty')->options(ExerciseDifficulty::class) // Opciones desde el enum
                 ->required()
                     ->required(),
             ]);

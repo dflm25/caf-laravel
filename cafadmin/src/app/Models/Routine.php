@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Routine extends Model
 {
     use HasFactory;
+
+    public function exercises()
+    {
+        return $this->belongsToMany(Exercise::class, 'routine_exercises');
+    }  
 }

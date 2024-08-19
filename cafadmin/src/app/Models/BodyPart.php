@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Routine extends Model
+class BodyPart extends Model
 {
     use HasFactory;
 
     public function exercises()
     {
-        return $this->belongsToMany(Exercise::class, 'routine_exercises');
-    }  
+        return $this->hasMany(Exercise::class);
+    }
 }

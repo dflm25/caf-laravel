@@ -12,10 +12,6 @@ enum ExerciseDifficulty: string implements HasLabel
 
     public function getLabel(): ?string
     {
-        return $this->name;
-        
-        // or
-    
         return match ($this) {
             self::Facil => 'Facil',
             self::Medio => 'Medio',

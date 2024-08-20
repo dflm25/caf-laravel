@@ -2,10 +2,11 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ExerciseResource\Pages;
-use App\Filament\Resources\ExerciseResource\RelationManagers;
 use App\Enums\ExerciseDifficulty;
-use App\Models\Exercise;
+use App\Enums\RoutineDay;
+use App\Filament\Resources\RoutineResource\Pages;
+use App\Filament\Resources\RoutineResource\RelationManagers;
+use App\Models\Routine;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,9 +15,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ExerciseResource extends Resource
+class RoutineResource extends Resource
 {
-    protected static ?string $model = Exercise::class;
+    protected static ?string $model = Routine::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,22 +25,18 @@ class ExerciseResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('body_part_id')
-                    ->relationship('body_part', 'name') // Assuming the relationship name is
-                    ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('video')
-                    ->columnSpanFull(),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
-                Forms\Components\FileUpload::make('picture')
-                    ->columnSpanFull(),
-                Forms\Components\FileUpload::make('gif')
-                    ->columnSpanFull(),
+                Forms\Components\DatePicker::make('start_date')
+                    ->required(),
+                Forms\Components\DatePicker::make('end_date')
+                    ->required(),
+                Forms\Components\Select::make('day_of')->options(RoutineDay::class)
+                    ->required(),
                 Forms\Components\Select::make('difficulty')->options(ExerciseDifficulty::class) // Opciones desde el enum
-                ->required()
                     ->required(),
             ]);
     }
@@ -48,11 +45,15 @@ class ExerciseResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('body_part_id')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('start_date')
+                    ->date()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('end_date')
+                    ->date()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('day_of'),
                 Tables\Columns\TextColumn::make('difficulty'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -86,9 +87,9 @@ class ExerciseResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListExercises::route('/'),
-            'create' => Pages\CreateExercise::route('/create'),
-            'edit' => Pages\EditExercise::route('/{record}/edit'),
+            'index' => Pages\ListRoutines::route('/'),
+            'create' => Pages\CreateRoutine::route('/create'),
+            'edit' => Pages\EditRoutine::route('/{record}/edit'),
         ];
     }
 }

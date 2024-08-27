@@ -4,6 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 import HomeScreen from "../screens/home";
 import ProfileScreen from "../screens/profile";
+import RoutineScreen from "../screens/routine";
 
 const Tab = createBottomTabNavigator();
 
@@ -45,7 +46,7 @@ function HomeTabs() {
       />
       <Tab.Screen
         name="Rutina"
-        component={HomeScreen}
+        component={RoutineScreen}
         options={{
           headerShown: false,
           tabBarLabel: "Mi rutina",

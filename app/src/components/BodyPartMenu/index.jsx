@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   itemContainer: {
-    justifyContent: "center",
     alignItems: "center",
     marginRight: 20,
   },

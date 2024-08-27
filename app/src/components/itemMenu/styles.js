@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 18,
-    fontWeight: 300,
+    fontWeight: "300",
   },
 });
 

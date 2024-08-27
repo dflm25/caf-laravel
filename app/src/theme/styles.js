@@ -1,3 +1,7 @@
 import { StyleSheet } from "react-native";
+import colors from "./colors";
 
-export default theme = StyleSheet.create({});
+console.log("colors", colors);
+export default theme = StyleSheet.create({
+  ...colors,
+});

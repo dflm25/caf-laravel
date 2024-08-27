@@ -7,7 +7,7 @@ export default styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    width,
+    width: width - 30,
     padding: 15,
   },
   headerTextContainer: {

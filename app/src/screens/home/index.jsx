@@ -1,19 +1,23 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+
+import HeaderProfile from "../../components/headerProfile";
+import BodyPartMenu from "../../components/BodyPartMenu";
+import TodayPlan from "../../components/todayPlan";
 
 const HomeScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text>Welcome to the Main App!</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <HeaderProfile />
+      <BodyPartMenu />
+      <TodayPlan />
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    padding: 15,
   },
 });
 
